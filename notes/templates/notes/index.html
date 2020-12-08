@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>NotesApp</title>
+{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">{{ title }}</h2>
+
+  <form class="searchbox mb-4" role="search" method="GET" action="{% url 'notes:search' %}">
+      <i class='bx bx-search-alt'></i>
+      <input type="text" name="search" placeholder="Search public notes..." >
+    
+  </form>
+  {% if notes %}
+    <div class="custom-cards">
+      {% for note in notes %}
+      <div class="custom-card">
+        <div class="custom-card__top border-bottom">
+          <div class="custom-card__author">
+            <a href="{% url 'notes:user_notes' note.author.username  %}">
+              <img src="{{ note.author.profile.image.url }}" alt="avatar" class="avatar-sm">
+              <span class="name">{{ note.author.username }}</span>
+            </a>
+            
+          </div>
+          {% if note.author == user %}
+            <a href="{% url 'notes:edit' note.slug %}" class="btn btn-primary">
+              Edit
+            </a>
+          {% endif %}
+        </div>
+        <div class="custom-card__middle">
+          <h5 class="custom-card__title">
+            <a href="{% url 'notes:note_detail' note.slug %}">
+              {{ note.title }}
+            </a>
+          </h5>
+          <p class="custom-card__desc text-muted">
+            
+              {{ note.body|truncatechars:60 }}          </p>
+        </div>
+        <div class="custom-card__bottom">
+          <small class="text-muted">{{ note.date_posted|date:"m/j/o" }}</small>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  {% else %}
+    <p>Oops, no Notes Found!</p>
+  {% endif %}
+{% endblock %}

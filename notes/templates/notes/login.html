@@ -1,0 +1,26 @@
+{% extends 'base_auth.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  <title>Login</title>
+{% endblock %}
+
+{% block content %}
+  <form action="" method="POST" class="auth--form">
+    {% csrf_token %}
+
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Login</legend>
+    </fieldset>
+    {{ form|crispy }}
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">Login</button>
+    </div>
+  </form>
+  <div class="pt-3">
+    <small class="text-muted">
+      Don't have an Account? <a href="{% url 'signup' %}" class="ml-2">Sign Up</a>
+    </small>
+  </div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  <title>Signup</title>
+{% endblock %}
+
+{% block content %}
+<div class="update_form mb-4">
+  <div class="content-section">
+    <div class="media">
+      <img src="{{ user.profile.image.url }}" alt="profile" class="rounded-circle account-img">
+      <div class="media-body">
+        <h2 class="account-heading">{{ user.username }}</h2>
+        <p class="text-secondary">{{ user.email|truncatechars:15 }}</p>
+      </div>
+    </div>
+  </div>
+    <form action="" method="POST"  enctype="multipart/form-data">
+      {% csrf_token %}
+      
+  
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Edit Your Profile</legend>
+      </fieldset>
+      {{ user_form|crispy }}
+      {{ profile_form|crispy }}
+  
+      <div class="form-group">
+        <button type="submit" class="btn btn-success">Update</button>
+      </div>
+    </form>
+</div>
+  
+{% endblock %}
