@@ -11,7 +11,7 @@ SECRET_KEY = secrets['SECRET_KEY']
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.43.44']
+ALLOWED_HOSTS = []
 
 
 # Application definition
