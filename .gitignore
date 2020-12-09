@@ -114,7 +114,7 @@ migrations
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
-secrets.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
