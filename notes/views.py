@@ -115,6 +115,21 @@ def user_notes(request, username):
     'title': f'{user.username}\'s Notes'
   })
 
+# /tag/<slug:slug>/
+@login_required
+def tag(request, slug):
+  notes = []
+  tag = slug
+  if request.method == 'GET':
+    if tag:
+      tag = escape(tag).lower()
+
+      notes = Note.objects.filter(status='public').filter(tags__name__in=[tag]).distinct().order_by('-date_posted') 
+  return render(request, 'notes/index.html', {
+    'notes': notes,
+    'title': f'Tag: #{tag}'
+  })
+
 # /add/
 @login_required
 def add(request):

@@ -28,9 +28,10 @@
               </a>
             </div>
             {% if note.author == user %}
-            <a href="{% url 'notes:edit' note.slug %}" class="edit-btn">
-              <i class='bx bx-edit icon'></i>
+            <a href="{% url 'notes:edit' note.slug %}" class="text-muted">
+              Edit
             </a>
+           
           {% endif %}
           </div>
           
@@ -67,9 +68,10 @@
                 </a>
               </div>
               {% if note.author == user %}
-            <a href="{% url 'notes:edit' note.slug %}" class="edit-btn">
-              <i class='bx bx-edit icon'></i>
+            <a href="{% url 'notes:edit' note.slug %}" class="text-muted">
+              Edit
             </a>
+           
           {% endif %}
             </div>
             

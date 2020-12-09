@@ -5,40 +5,45 @@
 {% endblock %}
 
 {% block content %}
-  <div class="notes__detail--top">
-    <h1>{{note.title}}</h1>
-    {% if note.author == user %}
-      <form action="{% url 'notes:delete' note.slug %}" method="POST">
-        {% csrf_token %}
-        <!-- Button trigger modal -->
-      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-        Delete
-      </button>
-
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 99999999999999;">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this?</h5>
+  <div class="notes__detail__page">
+    <div class="notes__detail--top">
+      <h1>{{note.title}}</h1>
+      {% if note.author == user %}
+        <form action="{% url 'notes:delete' note.slug %}" method="POST">
+          {% csrf_token %}
+          <!-- Button trigger modal -->
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+          Delete
+        </button>
+  
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 99999999999999;">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this?</h5>
+              
+                <span style="cursor: pointer; font-size: 1.2rem;" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</span>
             
-              <span style="cursor: pointer; font-size: 1.2rem;" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</span>
-          
-          </div>
-          
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-            <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
           </div>
         </div>
       </div>
+          
+        </form>
+      {% endif %}
     </div>
-        
-      </form>
-    {% endif %}
-  </div>
-  <div class="notes__detail">
-    {{ note.body|safe }}
+    <div class="notes__detail__extras">
+      <span class="name text-muted">Posted by {{ note.author.username }} on {{ note.date_posted|date:"m/j/o" }}</span>
+    </div>
+    <div class="notes__detail">
+      {{ note.body|safe }}
+    </div>
   </div>
 {% endblock %}

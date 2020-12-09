@@ -12,5 +12,6 @@ urlpatterns = [
   path('search/', views.search, name='search'),
   path('delete/<slug:slug>/', views.delete, name='delete'),
   path('edit/<slug:slug>/', views.edit, name='edit'),
-  path('user/<str:username>/', views.user_notes, name='user_notes')
+  path('user/<str:username>/', views.user_notes, name='user_notes'),
+  path('tag/<slug:slug>/', views.tag, name='tag')
 ]

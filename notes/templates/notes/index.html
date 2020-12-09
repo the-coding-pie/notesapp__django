@@ -9,7 +9,7 @@
 <h2 class="mb-4">{{ title }}</h2>
 
   <form class="searchbox mb-4" role="search" method="GET" action="{% url 'notes:search' %}">
-      <i class='bx bx-search-alt'></i>
+      <i class='bx bx-search-alt text-muted'></i>
       <input type="text" name="search" placeholder="Search public notes..." >
     
   </form>
@@ -26,9 +26,10 @@
             
           </div>
           {% if note.author == user %}
-            <a href="{% url 'notes:edit' note.slug %}" class="btn btn-primary">
+            <a href="{% url 'notes:edit' note.slug %}" class="text-muted">
               Edit
             </a>
+           
           {% endif %}
         </div>
         <div class="custom-card__middle">
@@ -40,7 +41,11 @@
           <p class="custom-card__desc text-muted">
             
               {{ note.body|truncatechars:60 }}          </p>
+          <p class="tags">{% for tag in note.tags.all %}
+            <small><a href="{% url 'notes:tag' tag.slug %}" class="text-muted">#{{ tag }}</a></small>
+            {% endfor %}</p>
         </div>
+        
         <div class="custom-card__bottom">
           <small class="text-muted">{{ note.date_posted|date:"m/j/o" }}</small>
         </div>
