@@ -357,6 +357,7 @@ form .form-text {
   padding: 0.5rem 0rem;
   box-shadow: var(--shadow--md);
   border-radius: 5px;
+  word-break: break-all;
 }
 
 .custom-card__top {

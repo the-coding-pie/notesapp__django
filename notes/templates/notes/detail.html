@@ -46,7 +46,7 @@
       <small><a href="{% url 'notes:tag' tag.slug %}" class="text-muted">#{{ tag }}</a></small>
       {% endfor %}</p>
     <div class="notes__detail">
-      {{ note.body|safe }}
+      {{ note.body }}
     </div>
   </div>
 {% endblock %}
