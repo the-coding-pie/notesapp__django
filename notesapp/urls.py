@@ -12,6 +12,9 @@ urlpatterns = [
     path('', include('notes.urls'))
 ]
 
+handler404 = views.handler404
+handler500 = views.handler500
+
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

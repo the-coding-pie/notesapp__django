@@ -34,9 +34,10 @@ class Note(models.Model):
   body = models.TextField()
   date_posted = models.DateTimeField(auto_now_add=True)
   author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notes')
-  status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='public')
+  status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='private')
   tags = TaggableManager()
   slug = models.SlugField(max_length=250, unique=True)
+  favourite = models.ManyToManyField(User, related_name='favourite', blank=True)
 
   class Meta:
     ordering = ('-date_posted', )
@@ -46,6 +47,9 @@ class Note(models.Model):
   
   def get_absolute_url(self):
     reverse('notes:note_detail', args=[self.slug])
+
+  def favourites(self):
+    return [user for user in self.favourite.all()]
 
 def slug_generator(sender, instance, *args, **kwargs):
   if not instance.slug:
