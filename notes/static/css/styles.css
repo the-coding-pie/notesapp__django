@@ -474,10 +474,6 @@ form.searchbox > div.form-group > input.form-control {
   margin-bottom: 1rem;
 }
 
-.edit__top {
-  display: flex;
-}
-
 .error_page {
   display: flex;
   flex-direction: column;
