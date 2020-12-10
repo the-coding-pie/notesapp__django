@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
@@ -7,12 +8,13 @@ from django.contrib import messages
 from .models import Note
 from django.utils.html import escape
 from django.contrib.auth.models import User
+import json
 
 # /
 @login_required
 def home(request):
   notes = Note.objects.filter(status='public')
-
+  
   return render(request, 'notes/index.html', {
     'notes': notes,
     'title': 'All Public Notes'
@@ -71,7 +73,8 @@ def edit(request, slug):
         'tags': note.tags.all()
       })
       return render(request, 'notes/edit.html', {
-        'form': form
+        'form': form,
+        'note': note
       })
     elif request.method == 'POST':
       form = NoteCreationForm(data=request.POST, instance=note)
@@ -166,6 +169,15 @@ def note_detail(request, slug):
     'note': note
   })
 
+# /favourites/
+def favourites(request):
+  notes = request.user.favourite.all()
+
+  return render(request, 'notes/favourites.html', {
+    'notes': notes,
+    'title': 'Your Favourites'
+  })
+
 # /login/
 def login_view(request):
   next_url = request.GET.get('next')
@@ -201,7 +213,41 @@ def signup(request):
     'form': form
   })
 
+# /note/fav/<str:id>/
+@login_required
+def favourite(request):
+  if request.method == 'POST':
+    id = json.load(request)['id']
+    note = get_object_or_404(Note, id=id)
+    if note.favourite.filter(id=request.user.id).exists():
+      # remove it from favourite
+      note.favourite.remove(request.user)
+      return JsonResponse({
+      'status': 200,
+      'msg': 'success',
+      'meta': 'Removed from Favourites'
+    })
+    else:
+      note.favourite.add(request.user)
+      return JsonResponse({
+    'status': 200,
+      'msg': 'success',
+    'meta': 'Added To Favourites'
+  })
+  return JsonResponse({
+    'status': 400,
+    'msg': 'error'
+  })
+
 # /logout/
 def logout_view(request):
   logout(request)
   return redirect('login')
+
+# 404
+def handler404(request, exception):
+  return render(request, '404.html', status=404)
+
+# 500
+def handler500(request):
+  return render(request, '500.html', status=500)

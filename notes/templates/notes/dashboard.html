@@ -22,19 +22,19 @@
         <div class="custom-card">
           <div class="custom-card__top border-bottom">
             <div class="custom-card__author">
-              <a href="{% url 'notes:profile'  %}">
+              <a href="{% url 'notes:user_notes' note.author.username  %}">
                 <img src="{{ note.author.profile.image.url }}" alt="avatar" class="avatar-sm">
                 <span class="name">{{ note.author.username }}</span>
               </a>
+              
             </div>
             {% if note.author == user %}
-            <a href="{% url 'notes:edit' note.slug %}" class="text-muted">
-              Edit
-            </a>
-           
-          {% endif %}
+              <a href="{% url 'notes:edit' note.slug %}" class="text-muted">
+                Edit
+              </a>
+             
+            {% endif %}
           </div>
-          
           <div class="custom-card__middle">
             <h5 class="custom-card__title">
               <a href="{% url 'notes:note_detail' note.slug %}">
@@ -42,11 +42,24 @@
               </a>
             </h5>
             <p class="custom-card__desc text-muted">
-              {{ note.body|truncatechars:60 }}  
-            </p>
+              
+                {{ note.body|truncatechars:60 }}          </p>
+            <p class="tags">{% for tag in note.tags.all %}
+              <small><a href="{% url 'notes:tag' tag.slug %}" class="text-muted">#{{ tag.slug }}</a></small>
+              {% endfor %}</p>
           </div>
+          
           <div class="custom-card__bottom">
             <small class="text-muted">{{ note.date_posted|date:"m/j/o" }}</small>
+              {% if note in user.favourite.all %}
+              <button data-id="{{ note.id }}" type="button" class="fav_btn fav">
+                <i data-toggle="tooltip" data-placement="bottom" title="Add To Favourites" class='bx bx-heart-circle'></i>
+              </button>
+              {% else %}
+              <button data-id="{{ note.id }}" type="button" class="fav_btn">
+                <i data-toggle="tooltip" data-placement="bottom" title="Add To Favourites" class='bx bx-heart-circle'></i>
+              </button>
+              {% endif %}
           </div>
         </div>
         {% endfor %}
@@ -59,36 +72,49 @@
       {% if private_notes %}
       <div class="custom-cards">
         {% for note in private_notes %}
-          <div class="custom-card">
-            <div class="custom-card__top border-bottom">
-              <div class="custom-card__author">
-                <a href="{% url 'notes:profile'  %}">
-                  <img src="{{ note.author.profile.image.url }}" alt="avatar" class="avatar-sm">
-                  <span class="name">{{ note.author.username }}</span>
-                </a>
-              </div>
-              {% if note.author == user %}
-            <a href="{% url 'notes:edit' note.slug %}" class="text-muted">
-              Edit
-            </a>
-           
-          {% endif %}
+        <div class="custom-card">
+          <div class="custom-card__top border-bottom">
+            <div class="custom-card__author">
+              <a href="{% url 'notes:user_notes' note.author.username  %}">
+                <img src="{{ note.author.profile.image.url }}" alt="avatar" class="avatar-sm">
+                <span class="name">{{ note.author.username }}</span>
+              </a>
+              
             </div>
-            
-            <div class="custom-card__middle">
-              <h5 class="custom-card__title">
-                <a href="{% url 'notes:note_detail' note.slug %}">
-                  {{ note.title }}
-                </a>
-              </h5>
-              <p class="custom-card__desc text-muted">
-                {{ note.body|truncatechars:60 }}  
-              </p>
-            </div>
-            <div class="custom-card__bottom">
-              <small class="text-muted">{{ note.date_posted|date:"m/j/o" }}</small>
-            </div>
+            {% if note.author == user %}
+              <a href="{% url 'notes:edit' note.slug %}" class="text-muted">
+                Edit
+              </a>
+             
+            {% endif %}
           </div>
+          <div class="custom-card__middle">
+            <h5 class="custom-card__title">
+              <a href="{% url 'notes:note_detail' note.slug %}">
+                {{ note.title }}
+              </a>
+            </h5>
+            <p class="custom-card__desc text-muted">
+              
+                {{ note.body|truncatechars:60 }}          </p>
+            <p class="tags">{% for tag in note.tags.all %}
+              <small><a href="{% url 'notes:tag' tag.slug %}" class="text-muted">#{{ tag.slug }}</a></small>
+              {% endfor %}</p>
+          </div>
+          
+          <div class="custom-card__bottom">
+            <small class="text-muted">{{ note.date_posted|date:"m/j/o" }}</small>
+              {% if note in user.favourite.all %}
+              <button data-id="{{ note.id }}" type="button" class="fav_btn fav">
+                <i data-toggle="tooltip" data-placement="bottom" title="Add To Favourites" class='bx bx-heart-circle'></i>
+              </button>
+              {% else %}
+              <button data-id="{{ note.id }}" type="button" class="fav_btn">
+                <i data-toggle="tooltip" data-placement="bottom" title="Add To Favourites" class='bx bx-heart-circle'></i>
+              </button>
+              {% endif %}
+          </div>
+        </div>
         {% endfor %}
       </div>
       {% else %}
@@ -96,4 +122,7 @@
       {% endif %}
     </div>
   </div>
+{% endblock %}
+{% block script %}
+<script defer type="text/javascript" src="{% static 'js/fav.js' %}"></script>
 {% endblock %}

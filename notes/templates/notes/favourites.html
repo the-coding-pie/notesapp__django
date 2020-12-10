@@ -2,17 +2,13 @@
 {% load static %}
 
 {% block title %}
-  <title>NotesApp</title>
+  <title>Favourites</title>
 {% endblock %}
 
 {% block content %}
 <h2 class="mb-4">{{ title }}</h2>
 
-  <form class="searchbox mb-4" role="search" method="GET" action="{% url 'notes:search' %}">
-      <i class='bx bx-search-alt text-muted'></i>
-      <input type="text" name="search" placeholder="Search public notes..." >
-    
-  </form>
+
   {% if notes %}
     <div class="custom-cards">
       {% for note in notes %}
@@ -62,7 +58,7 @@
     {% endfor %}
     </div>
   {% else %}
-    <p>Oops, no Notes Found!</p>
+    <p>You don't have any Favourites!</p>
   {% endif %}
 {% endblock %}
 {% block script %}

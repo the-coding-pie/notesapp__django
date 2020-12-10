@@ -357,18 +357,32 @@ form .form-text {
   padding: 0.5rem 0rem;
   box-shadow: var(--shadow--md);
   border-radius: 5px;
+  word-break: break-all;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .custom-card__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0rem 1rem 0.5rem 0.5rem;
+  padding: 0rem 1rem 0.5rem 1rem;
 }
 
 .custom-card__middle {
   margin-bottom: 0.3rem;
-  padding: 0.5rem 0.5rem 0rem 0.5rem;
+  flex: 2 2 !important;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.custom-card__bottom {
+  font-size: 0.8rem;
+  display: flex;
+  flex: 1 1 !important;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0rem 1rem;
 }
 
 .custom-card .tags {
@@ -388,9 +402,32 @@ form .form-text {
   font-size: 0.9rem;
 }
 
-.custom-card__bottom {
-  padding: 0rem 0.5rem;
-  font-size: 0.8rem;
+.custom-card .fav_btn {
+  background: none;
+  outline: none;
+  padding: 0;
+  border: none;
+  cursor: url;
+}
+
+.custom-card .fav_btn:hover {
+  cursor: url;
+}
+
+.custom-card button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-card button.fav i {
+ color: red;
+}
+
+.custom-card__bottom i {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: darkgray;
 }
 
 form.searchbox > div.form-group > input.form-control {
@@ -435,6 +472,24 @@ form.searchbox > div.form-group > input.form-control {
 
 #div_id_image {
   margin-bottom: 1rem;
+}
+
+.error_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.error_page h1 {
+  font-size: 3rem;
+}
+
+.error_page p {
+  font-weight: bold;
+  font-size: 1.8rem;
 }
 
 @media(max-width: 847px) {
