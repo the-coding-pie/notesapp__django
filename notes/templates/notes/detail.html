@@ -45,6 +45,12 @@
     <p class="note__detail__tags tags">{% for tag in note.tags.all %}
       <small><a href="{% url 'notes:tag' tag.slug %}" class="text-muted">#{{ tag }}</a></small>
       {% endfor %}</p>
+    {% if note.attatchment %}
+      <div class="attatchment">
+        <a href="{{ note.attatchment.url }}" download>
+          <i class='bx bxs-file' ></i>{{ note.attatchment.name|truncatechars:40 }}</a>
+      </div>
+    {% endif %}
     <div class="notes__detail">
       {{ note.body }}
     </div>

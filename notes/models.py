@@ -32,6 +32,7 @@ class Note(models.Model):
   )
   title = models.CharField(max_length=120)
   body = models.TextField()
+  attatchment = models.FileField(upload_to='attatchment/', blank=True, null=True)
   date_posted = models.DateTimeField(auto_now_add=True)
   author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notes')
   status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='private')
