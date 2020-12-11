@@ -40,6 +40,12 @@
               <a href="{% url 'notes:note_detail' note.slug %}">
                 {{ note.title }}
               </a>
+              {% if note.attatchment %}
+              <div class="attatchment">
+                <a href="{{ note.attatchment.url }}" download>
+                  <i data-toggle="tooltip" data-placement="bottom" title="Attatchment" class='bx bxs-file' ></i></a>
+              </div>
+            {% endif %}
             </h5>
             <p class="custom-card__desc text-muted">
               
@@ -93,6 +99,12 @@
               <a href="{% url 'notes:note_detail' note.slug %}">
                 {{ note.title }}
               </a>
+              {% if note.attatchment %}
+              <div class="attatchment">
+                <a href="{{ note.attatchment.url }}" download>
+                  <i data-toggle="tooltip" data-placement="bottom" title="Attatchment" class='bx bxs-file' ></i></a>
+              </div>
+            {% endif %}
             </h5>
             <p class="custom-card__desc text-muted">
               

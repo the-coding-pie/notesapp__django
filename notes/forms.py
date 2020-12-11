@@ -13,7 +13,7 @@ class UserRegisterForm(UserCreationForm):
 class NoteCreationForm(forms.ModelForm):
   class Meta:
     model = Note
-    fields = ['title', 'body', 'status', 'tags']
+    fields = ['title', 'body', 'attatchment', 'status', 'tags']
 
 class UserUpdateForm(forms.ModelForm):
   email = forms.EmailField()

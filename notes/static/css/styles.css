@@ -275,6 +275,30 @@ img {
   margin-left: 0;
 }
 
+.notes__detail__tags {
+  margin-bottom: 0.5rem;
+}
+
+.attatchment {
+  display: flex;
+  margin-bottom: 0.5rem;
+  color: gray;
+}
+
+.attatchment i {
+  margin-right: 0.2rem;
+  font-size: 1.2rem;
+}
+
+.custom-card .attatchment i {
+  margin-right: 0rem;
+  margin-top: 0.3rem;
+}
+
+.custom-card .attatchment {
+  margin-bottom: 0rem;
+}
+
 .notes__detail__extras .name {
   font-size: 0.9rem;
 }
@@ -393,9 +417,18 @@ form .form-text {
   margin-bottom: 0.3rem;
 }
 
+.alert-error {
+  color: #473d3e;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
 .custom-card__title {
   font-size: 1.3rem;
   font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-self: flex-start;
 }
 
 .custom-card__desc {
@@ -491,6 +524,7 @@ form.searchbox > div.form-group > input.form-control {
   font-weight: bold;
   font-size: 1.8rem;
 }
+
 
 @media(max-width: 847px) {
   

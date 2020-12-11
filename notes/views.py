@@ -137,7 +137,7 @@ def tag(request, slug):
 @login_required
 def add(request):
   if request.method == 'POST':
-    form = NoteCreationForm(data=request.POST)
+    form = NoteCreationForm(request.POST, request.FILES)
     if form.is_valid():
       instance = form.save(commit=False)
       tags = form.cleaned_data['tags']
