@@ -526,6 +526,35 @@ form.searchbox > div.form-group > input.form-control {
   font-size: 1.8rem;
 }
 
+.index-page {
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.index-page h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.index-page img {
+  width: 35px;
+  height: 35px;
+  margin-right: 0.5rem;
+}
+
+.index-page p {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.index-page .btn {
+  font-size: 1.1rem;
+}
 
 @media(max-width: 847px) {
   

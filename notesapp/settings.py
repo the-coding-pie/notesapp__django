@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import json
+from django.urls import reverse
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,7 +10,7 @@ with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
 
 SECRET_KEY = secrets['SECRET_KEY']
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -116,6 +117,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # login url
-LOGIN_URL = 'login'
+LOGIN_URL = 'notes:login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

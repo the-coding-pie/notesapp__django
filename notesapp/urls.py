@@ -6,10 +6,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', views.login_view, name='login'),
-    path('logout/', views.logout_view, name='logout'),
-    path('signup/', views.signup, name='signup'),
-    path('', include('notes.urls'))
+    path('', include('notes.urls', namespace='notes'))
 ]
 
 handler404 = views.handler404

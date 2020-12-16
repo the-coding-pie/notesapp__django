@@ -10,7 +10,13 @@ from django.utils.html import escape
 from django.contrib.auth.models import User
 import json
 
-# /
+# index.html
+def index(request):
+  if request.user.is_authenticated:
+    return redirect('notes:home')
+  return render(request, 'index.html')
+
+# /home
 @login_required
 def home(request):
   notes = Note.objects.filter(status='public')
@@ -60,6 +66,7 @@ def delete(request, slug):
   return redirect('notes:home')
 
 # /edit/<slug:slug>/
+@login_required
 def edit(request, slug):
   note = Note.objects.filter(slug=slug).first()
   # check if request.user == note.author are same
@@ -156,6 +163,7 @@ def add(request):
   })
 
 # /note/<slug:slug>/
+@login_required
 def note_detail(request, slug):
   note = get_object_or_404(Note, slug=slug)
 
@@ -170,6 +178,7 @@ def note_detail(request, slug):
   })
 
 # /favourites/
+@login_required
 def favourites(request):
   notes = request.user.favourite.all()
 
@@ -201,12 +210,13 @@ def login_view(request):
 def signup(request):
   if request.user.is_authenticated:
     return redirect('notes:home')
+
   if request.method == 'POST':
     form = UserRegisterForm(request.POST)
     if form.is_valid():
       form.save()
       messages.success(request, f'Your Account created successfully!')
-      return redirect('login')
+      return redirect('notes:login')
   else:
     form = UserRegisterForm()
   return render(request, 'notes/signup.html', {
@@ -242,7 +252,7 @@ def favourite(request):
 # /logout/
 def logout_view(request):
   logout(request)
-  return redirect('login')
+  return redirect('notes:index')
 
 # 404
 def handler404(request, exception):

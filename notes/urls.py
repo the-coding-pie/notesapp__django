@@ -4,7 +4,11 @@ from . import views
 app_name = 'notes'
 
 urlpatterns = [
-  path('', views.home, name='home'),
+  path('', views.index, name='index'),
+  path('login/', views.login_view, name='login'),
+  path('logout/', views.logout_view, name='logout'),
+  path('signup/', views.signup, name='signup'),
+  path('home/', views.home, name='home'),
   path('note/fav/', views.favourite, name='favourite'),
   path('dashboard/', views.dashboard, name='dashboard'),
   path('profile/', views.profile, name='profile'),
