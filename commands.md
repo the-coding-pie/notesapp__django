@@ -7,7 +7,7 @@ Now let's do the following:
 <!-- MySQL Database Setup -->
 
 ## 1. Make a Virtual Environment using venv
-    `python3 -m venv venv`
+    ```python3 -m venv venv```
 
 ## 2. Activate venv
     `source venv/bin/activate`
