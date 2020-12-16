@@ -4,14 +4,15 @@ A simple notes sharing app for students to share & keep their notes and attachme
 
 ### Details
 
-Framework Used: Django
-Database      : MySQL
-CSS Styling   : CSS, Bootstrap
-Interactivity : Javascript
+- Framework Used: Django
+- Database      : MySQL
+- CSS Styling   : CSS, Bootstrap
+- Interactivity : Javascript
 
 It is entirely built using Django, a beautiful python web framework. MySQL is used as the database. For styling, we used Bootstrap, and in some parts used custom CSS. Javascript is used for client side interactivity.
 
 This NotesApp can do the following:
+
     - Users can Login/Signup.
     - Users can CREATE, READ, UPDATE, DELETE (CRUD) notes.
     - A note can be a simple text/simple text + attachment.
