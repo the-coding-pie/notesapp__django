@@ -7,10 +7,10 @@ Now let's do the following:
 <!-- MySQL Database Setup -->
 
 ## 1. Make a Virtual Environment using venv
-    ```python3 -m venv venv```
+    ``` python3 -m venv venv ```
 
 ## 2. Activate venv
-    `source venv/bin/activate`
+`source venv/bin/activate`
 
 ## 3. Setting up MySQL Database
      `sudo apt update`
@@ -42,8 +42,11 @@ Now let's do the following:
 
 ## 9. Run Migrations
 - These migrations will create corresponding "Tables" on your DB.
+    
     `python manage.py makemigrations`
+
     `python manage.py makemigrations notes`
+    
     `python manage.py migrate`
 
 ## 10. Running Django Development Server
