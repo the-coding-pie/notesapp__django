@@ -61,6 +61,8 @@ Now let's do the following:
   `python manage.py makemigrations notes`
 
   `python manage.py migrate`
+  
+  `python manage.py collectstatic`
 
 ## 10. Running Django Development Server
 

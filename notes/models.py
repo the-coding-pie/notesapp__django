@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.db.models.signals import pre_save
 from .utils import unique_slug_generator
 from PIL import Image
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # profile model
 class Profile(models.Model):
@@ -31,7 +32,7 @@ class Note(models.Model):
     ('private', 'Private')
   )
   title = models.CharField(max_length=120)
-  body = models.TextField()
+  body = RichTextUploadingField()
   attatchment = models.FileField(upload_to='attatchment/', blank=True, null=True)
   date_posted = models.DateTimeField(auto_now_add=True)
   author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notes')

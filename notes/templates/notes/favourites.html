@@ -40,10 +40,7 @@
               </div>
             {% endif %}
           </h5>
-          <p class="custom-card__desc text-muted">
-            
-              {{ note.body|truncatechars:60 }}          </p>
-          <p class="tags">{% for tag in note.tags.all %}
+          <p class="tags"><small>Tags:</small>{% for tag in note.tags.all %}
             <small><a href="{% url 'notes:tag' tag.slug %}" class="text-muted">#{{ tag.slug }}</a></small>
             {% endfor %}</p>
         </div>

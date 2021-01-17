@@ -5,16 +5,20 @@
 {% endblock %}
 
 {% block content %}
-  <div class="notes__detail__page">
+  <div class="notes__detail__page mb-5">
     <div class="notes__detail--top">
       <h1>{{note.title}}</h1>
       {% if note.author == user %}
         <form action="{% url 'notes:delete' note.slug %}" method="POST">
           {% csrf_token %}
           <!-- Button trigger modal -->
+        <div class="d-flex">
+          <a href="{% url 'notes:edit' note.slug %}" class="btn btn-primary mx-2">Edit</a>
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
           Delete
         </button>
+      </div>
+
   
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 99999999999999;">
@@ -42,7 +46,8 @@
     <div class="notes__detail__extras">
       <span class="name text-muted">Posted by {{ note.author.username }} on {{ note.date_posted|date:"m/j/o" }}</span>
     </div>
-    <p class="note__detail__tags tags">{% for tag in note.tags.all %}
+    <p class="note__detail__tags tags mb-5">
+      <small>Tags:</small> {% for tag in note.tags.all %}
       <small><a href="{% url 'notes:tag' tag.slug %}" class="text-muted">#{{ tag }}</a></small>
       {% endfor %}</p>
     {% if note.attatchment %}
@@ -52,7 +57,7 @@
       </div>
     {% endif %}
     <div class="notes__detail">
-      {{ note.body }}
+      {{ note.body|safe }}
     </div>
   </div>
 {% endblock %}
